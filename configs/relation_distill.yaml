@@ -1,0 +1,28 @@
+experiment: relation_distill
+model: weights/yolov8m.pt
+data: configs/data.yaml
+epochs: 100
+batch: 8
+imgsz: 640
+optimizer: SGD
+lr0: 0.01
+lrf: 0.01
+momentum: 0.937
+weight_decay: 0.0005
+warmup_epochs: 3
+val_interval: 10
+device: 0
+project: runs
+name: E2_relation_distill
+teacher_weights: weights/dinov2_vitl14_reg4_pretrain.pth
+lambda_distill: 1.0
+temperature: 0.07
+max_relation_tokens: 1600
+teacher_layers:
+  shallow: [6, 7, 8]
+  middle: [12, 13, 14]
+  deep: [20, 21, 22]
+level_weights:
+  shallow: 1.0
+  middle: 1.0
+  deep: 1.0
